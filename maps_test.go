@@ -87,5 +87,5 @@ func TestMaps(t *testing.T) {
 	assert.Equal(false, exist)
 	// 若 key 不在映射中，那么 player 是该映射元素类型的零值
 	assert.Equal("", player.id)
-	assert.Equal(0, player.data)
+	assert.Equal(float32(0), player.data)
 }
