@@ -78,4 +78,14 @@ func TestMaps(t *testing.T) {
 		},
 	}
 	assert.Equal(3, len(goodPlayers))
+
+	player, exist := goodPlayers["Curry"]
+	assert.Equal(true, exist)
+	assert.Equal("4068436", player.id)
+
+	player, exist = goodPlayers["Bruce"]
+	assert.Equal(false, exist)
+	// 若 key 不在映射中，那么 player 是该映射元素类型的零值
+	assert.Equal("", player.id)
+	assert.Equal(0, player.data)
 }
