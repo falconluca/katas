@@ -39,4 +39,43 @@ func TestMaps(t *testing.T) {
 	delete(netIds, "ftx")
 	delete(netIds, "xfl")
 	assert.Empty(netIds)
+
+	players := make(map[string]struct {
+		id   string
+		data float32
+	})
+	// TODO(不太明白) 映射的零值为nil
+	assert.Empty(players)
+
+	players["Luca"] = struct {
+		id   string
+		data float32
+	}{
+		"4068433", 74.39967,
+	}
+	assert.Equal(float32(74.39967), players["Luca"].data)
+	assert.Equal("4068433", players["Luca"].id)
+
+	goodPlayers := map[string]struct {
+		id   string
+		data float32
+	}{
+		"Luca": struct {
+			id   string
+			data float32
+		}{
+			"4068433", 74.39967,
+		},
+		"Allen": struct {
+			id   string
+			data float32
+		}{
+			"4068434", 84.39967,
+		},
+		// 若顶级类型只是一个类型名，你可以在文法的元素中省略它
+		"Curry": {
+			"4068436", 74.45967,
+		},
+	}
+	assert.Equal(3, len(goodPlayers))
 }
