@@ -8,7 +8,9 @@ import (
 func TestVariable(t *testing.T) {
 	assert := assert.New(t)
 
-	assert.Equal("https://www.baidu.com", GetConstString())
+	url, enable := GetConst()
+	assert.Equal("https://www.baidu.com", url)
+	assert.Equal(true, enable)
 
 	playerName, playerNumber, isStarting := DefaultValues()
 	assert.Equal("", playerName)

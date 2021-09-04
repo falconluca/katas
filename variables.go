@@ -7,9 +7,12 @@ import (
 
 // Go的基本类型 https://tour.go-zh.org/basics/11
 
-func GetConstString() string {
+func GetConst() (string, bool) {
 	const BaiduHomePageUrl = "https://www.baidu.com"
-	return BaiduHomePageUrl
+	// 常量不能用 短变量 语法声明
+	const Enable = true
+	// TODO 数值常量, 是高精度的值
+	return BaiduHomePageUrl, Enable
 }
 
 func DefaultValues() (string, int, bool) {
