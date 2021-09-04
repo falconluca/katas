@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"github.com/stretchr/testify/assert"
 	"testing"
 )
@@ -21,8 +20,8 @@ func TestStruct(t *testing.T) {
 	expected = "id: 10000\ttitle: 早餐吃啥呢\turl: https://www.baidu.com"
 	assert.Equal(expected, tiktokNews.ParseWithBr("\t"))
 
-	pTiktokNews := &tiktokNews
-	fmt.Println(pTiktokNews) // &{10000 早餐吃啥呢 https://www.baidu.com}
+	// 获取结构体的指针
+	pTiktokNews := &tiktokNews // &{10000 早餐吃啥呢 https://www.baidu.com}
 	(*pTiktokNews).title = "吃点好的"
 	(*pTiktokNews).id = 10001
 	assert.Equal(int64(10001), (*pTiktokNews).id)
