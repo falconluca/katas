@@ -10,13 +10,15 @@ import (
 func TestSlices(t *testing.T) {
 	assert := assert.New(t)
 
-	players := [5]string{"Luca", "Allen", "Curry", "James", "Love"}
+	// 数组的长度是其类型的一部分，因此数组不能改变大小。
+	players := [5]string{"Luca", "Allen", "Curry", "James", "Love"} // 数组
 	assert.Equal(5, len(players))
 	assert.Equal("Luca", players[0])
 	assert.Equal("Curry", players[2])
 	assert.Equal("Love", players[4])
 
-	nbaPlayers := players[1:]
+	// 切片就像数组的引用
+	var nbaPlayers []string = players[1:] // 切片
 	assert.Equal(4, len(nbaPlayers))
 	assert.Equal("Allen", nbaPlayers[0])
 	assert.Equal("Love", nbaPlayers[3])
@@ -25,13 +27,13 @@ func TestSlices(t *testing.T) {
 	players[2] = "CURRY"
 	assert.Equal("CURRY", nbaPlayers[1])
 
-	goodPlayers := players[:3]
+	var goodPlayers []string = players[:3] // 切片
 	assert.Equal(3, len(goodPlayers))
 	assert.Equal("Luca", goodPlayers[0])
 	assert.Equal("Allen", goodPlayers[1])
 	assert.Equal("CURRY", goodPlayers[2])
 
-	opponents := players[2:4]
+	opponents := players[2:4] // 切片
 	assert.Equal(2, len(opponents))
 	assert.Equal("CURRY", opponents[0])
 	assert.Equal("James", opponents[1])
