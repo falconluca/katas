@@ -87,3 +87,17 @@ func TestDifferenceBetweenArrayAndSlice(t *testing.T) {
 	}
 	assert.Equal(t, "[]struct { id int; name string }", reflect.TypeOf(books).String())
 }
+
+func TestDefaultBehaviorOfSlices(t *testing.T) {
+	var players [10]string
+	// 数组和切片不是同一种数据类型
+	assert.NotEqual(t, players, players[0:10])
+	assert.NotEqual(t, players, players[:10])
+	assert.NotEqual(t, players, players[0:])
+	assert.NotEqual(t, players, players[:])
+
+	playersSlice := players[0:10]
+	assert.Equal(t, playersSlice, players[0:])
+	assert.Equal(t, playersSlice, players[:10])
+	assert.Equal(t, playersSlice, players[:])
+}
