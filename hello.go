@@ -1,19 +1,11 @@
 package main
 
 import (
-	"awesomeProject/http"
-	//"awesomeProject/dao"
-	"fmt"
-	"time"
+	"awesomeProject/dao"
 )
 
 func main() {
-	t := time.Now()
-	fmt.Println(t)
-	fmt.Println(t.Weekday())
-	fmt.Println(time.Saturday)
-	fmt.Println(time.Sunday)
+	dao.TestDb()
 
-	//dao.TestDb()
-	http.Entry()
+	//http.Entry()
 }

@@ -1,16 +1,17 @@
 package dao
 
 import (
-	"fmt"
 	"log"
 )
 
 func TestDb() {
 	InitMySQL()
 
-	albums, err := AlbumsByArtist("John Coltrane")
-	if err != nil {
-		log.Fatal(err)
+	//SaveAlbum("Allen", "NBA", 80.25)
+	//UpdateAlbum("Go in Action", 5)
+	//DeleteAlbum(5)
+	albums, _ := ListAllAlbums()
+	for _, album := range albums {
+		log.Printf("id: %v, title: %v", album.ID, album.Title)
 	}
-	fmt.Printf("Albums found: %v\n", albums)
 }
