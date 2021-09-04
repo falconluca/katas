@@ -43,4 +43,9 @@ func TestDynamicParams(t *testing.T) {
 func TestRecursion(t *testing.T) {
 	assert.Equal(t, 6, Fb(3))
 	assert.Equal(t, 5040, Fb(7))
+
+	callback := func(x, y float64) float64 {
+		return x + y
+	}
+	assert.Equal(t, float64(7), ExecuteCallback(callback))
 }

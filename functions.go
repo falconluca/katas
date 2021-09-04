@@ -33,3 +33,7 @@ func Fb(n int) int {
 	}
 	return n * Fb(n-1)
 }
+
+func ExecuteCallback(fn func(float64, float64) float64) float64 {
+	return fn(3, 4)
+}
