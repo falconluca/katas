@@ -18,4 +18,6 @@ func TestVariable(t *testing.T) {
 	_, err := FormatPlayerName("")
 	assert.NotEmpty(err)
 	assert.Equal("name can not be empty", err.Error())
+
+	assert.Equal("player is Luca", ShortDeclare("Luca"))
 }

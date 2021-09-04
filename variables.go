@@ -29,3 +29,8 @@ func FormatPlayerName(name string) (string, error) {
 	player = fmt.Sprintf("player name is %s", name)
 	return player, nil
 }
+
+func ShortDeclare(name string) string {
+	player := "player is " + name
+	return player
+}
