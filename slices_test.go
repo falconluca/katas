@@ -102,3 +102,20 @@ func TestDefaultBehaviorOfSlices(t *testing.T) {
 	assert.Equal(t, playersSlice, players[:10])
 	assert.Equal(t, playersSlice, players[:])
 }
+
+func TestSliceCapAndLen(t *testing.T) {
+	players := []string{"Luca", "Allen", "Curry", "James", "Love", "Yao"}
+	assert.Equal(t, 6, len(players))
+	assert.Equal(t, 6, cap(players))
+
+	// len: 切片的长度就是它所包含的元素个数
+	assert.Equal(t, 4, len(players[2:]))
+	// cap: 切片的容量是从它的第一个元素开始数，到其【底层数组】元素末尾的个数
+	assert.Equal(t, 4, cap(players[2:]))
+
+	assert.Equal(t, 2, len(players[:2]))
+	assert.Equal(t, 6, cap(players[:2]))
+
+	assert.Equal(t, 2, len(players[2:4]))
+	assert.Equal(t, 4, cap(players[2:4]))
+}
