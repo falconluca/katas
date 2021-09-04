@@ -62,6 +62,7 @@ func TestDifferenceBetweenArrayAndSlice(t *testing.T) {
 	assert.Equal(t, "[]string", fmt.Sprintf("%T", playersSlice))
 
 	// 直接创建一个切片
+	// 工作原理：先创建数组，然后基于原数组构建一个引用了它的切片
 	var language []string = []string{"Go", "Java", "Bash"}
 	assert.Equal(t, "[]string", reflect.TypeOf(language).String())
 
