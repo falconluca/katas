@@ -174,3 +174,22 @@ func TestCreateSliceByMake(t *testing.T) {
 	//assert.Equal(t, 3, len(players[1:]))
 	//assert.Equal(t, 3, cap(players[1:]))
 }
+
+func TestSliceAppend(t *testing.T) {
+	// Go切片的用法和本质 https://blog.go-zh.org/go-slices-usage-and-internals
+	var players []string
+	assert.Equal(t, 0, len(players))
+	assert.Equal(t, 0, cap(players))
+
+	players = append(players, "Luca")
+	assert.Equal(t, 1, len(players))
+	assert.Equal(t, 1, cap(players))
+
+	players = append(players, "Allen")
+	assert.Equal(t, 2, len(players))
+	assert.Equal(t, 2, cap(players))
+
+	players = append(players, "James", "Curry", "Love")
+	assert.Equal(t, 5, len(players))
+	assert.Equal(t, 5, cap(players))
+}
