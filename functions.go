@@ -4,7 +4,7 @@ func SayHey(name string) string {
 	return "Hey " + name
 }
 
-func GetOrderStatusById(orderId int) (string, bool) {
+func GetOrderStatusById(orderId, userId int) (string, bool) {
 	orderStatusTable := map[int]string{0: "unpaid", 1: "paid", 2: "finished"}
 	orderStatus, err := orderStatusTable[orderId]
 	return orderStatus, err

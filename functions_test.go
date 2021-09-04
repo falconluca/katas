@@ -12,11 +12,11 @@ func TestShouldReturnOneValue(t *testing.T) {
 
 // 函数多个返回值
 func TestShouldReturnTwoValue(t *testing.T) {
-	orderStatus, isSuccess := GetOrderStatusById(0)
+	orderStatus, isSuccess := GetOrderStatusById(0, 0)
 	assert.Equal(t, "unpaid", orderStatus)
 	assert.True(t, isSuccess)
 
-	orderStatus1, err1 := GetOrderStatusById(5)
+	orderStatus1, err1 := GetOrderStatusById(5, 0)
 	// map的value类型为string默认值为空字符串
 	assert.Equal(t, "", orderStatus1)
 	assert.False(t, err1)
