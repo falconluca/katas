@@ -1,7 +1,9 @@
 package main
 
 import (
+	"fmt"
 	"github.com/stretchr/testify/assert"
+	"reflect"
 	"testing"
 )
 
@@ -48,4 +50,40 @@ func TestSlices(t *testing.T) {
 	buckets[2] = 7
 	assert.Equal(0, buckets[1])
 	assert.Equal(7, buckets[2])
+}
+
+func TestDifferenceBetweenArrayAndSlice(t *testing.T) {
+	// 创建一个数组
+	var players [3]string = [3]string{"Luca", "Allen", "James"}
+	assert.Equal(t, "[3]string", reflect.TypeOf(players).String())
+
+	// 通过数组创建一个切片
+	var playersSlice []string = players[0:]
+	assert.Equal(t, "[]string", fmt.Sprintf("%T", playersSlice))
+
+	// 直接创建一个切片
+	var language []string = []string{"Go", "Java", "Bash"}
+	assert.Equal(t, "[]string", reflect.TypeOf(language).String())
+
+	// 创建结构体切片
+	var tiktokNews []TiktokNews = []TiktokNews{
+		{id: 1000, title: "早上吃什么", url: "https://www.baidu.com"},
+		{id: 1001, title: "中午上吃什么", url: "https://www.douban.com"},
+		{id: 1002, title: "晚上吃什么", url: "https://www.zhihu.com"},
+	}
+	assert.Equal(t, "[]main.TiktokNews", reflect.TypeOf(tiktokNews).String())
+
+	// 匿名结构体切片
+	var books []struct {
+		id   int
+		name string
+	} = []struct {
+		id   int
+		name string
+	}{
+		{0, "领域驱动设计"},
+		{1, "代码整洁之道"},
+		{2, "重构"},
+	}
+	assert.Equal(t, "[]struct { id int; name string }", reflect.TypeOf(books).String())
 }
