@@ -1,7 +1,16 @@
 package dao
 
-//import "github.com/go-sql-driver/mysql"
+import (
+	"fmt"
+	"log"
+)
 
-func Insert() string {
-	return "inserted!"
+func TestDb() {
+	InitMySQL()
+
+	albums, err := AlbumsByArtist("John Coltrane")
+	if err != nil {
+		log.Fatal(err)
+	}
+	fmt.Printf("Albums found: %v\n", albums)
 }
