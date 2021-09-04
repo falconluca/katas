@@ -1,6 +1,7 @@
 package main
 
 import (
+	"awesomeProject/http"
 	//"awesomeProject/dao"
 	"fmt"
 	"time"
@@ -14,4 +15,5 @@ func main() {
 	fmt.Println(time.Sunday)
 
 	//dao.TestDb()
+	http.Entry()
 }
