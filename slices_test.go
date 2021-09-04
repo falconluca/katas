@@ -155,3 +155,22 @@ func TestDefaultValueOfSlice(t *testing.T) {
 	assert.Equal(t, 0, cap(isStarting))
 	assert.Equal(t, []bool(nil), isStarting)
 }
+
+func TestCreateSliceByMake(t *testing.T) {
+	// make函数会分配一个元素为零值的数组并返回一个引用了它的切片
+	phoneNumbers := make([]int, 4)
+	assert.NotEmpty(t, phoneNumbers)
+	assert.Equal(t, []int{0, 0, 0, 0}, phoneNumbers)
+	assert.Equal(t, 4, len(phoneNumbers))
+
+	// 0 0 0 0
+	players := make([]string, 0, 4)
+	assert.Equal(t, 0, len(players))
+	assert.Equal(t, 4, cap(players))
+
+	assert.Equal(t, 2, len(players[:2]))
+	assert.Equal(t, 4, cap(players[:2]))
+
+	//assert.Equal(t, 3, len(players[1:]))
+	//assert.Equal(t, 3, cap(players[1:]))
+}
