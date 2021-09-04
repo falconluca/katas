@@ -10,6 +10,10 @@ func GetOrderStatusById(orderId, userId int) (string, bool) {
 	return orderStatus, err
 }
 
+func SwapString(x string, y string) (string, string) {
+	return y, x
+}
+
 func CalculateTotalGoodsStock(goodsStockList ...int) int {
 	var result int
 	// 使用_符号忽略列表下标

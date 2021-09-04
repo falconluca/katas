@@ -20,6 +20,10 @@ func TestShouldReturnTwoValue(t *testing.T) {
 	// map的value类型为string默认值为空字符串
 	assert.Equal(t, "", orderStatus1)
 	assert.False(t, err1)
+
+	first, second := SwapString("Hello", "Luca")
+	assert.Equal(t, "Luca", first)
+	assert.Equal(t, "Hello", second)
 }
 
 // 函数可变参数列表
