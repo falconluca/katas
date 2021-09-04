@@ -10,8 +10,10 @@ func GetOrderStatusById(orderId, userId int) (string, bool) {
 	return orderStatus, err
 }
 
-func SwapString(x string, y string) (string, string) {
-	return y, x
+func SwapString(x string, y string) (before, after string) {
+	before = y
+	after = x
+	return
 }
 
 func CalculateTotalGoodsStock(goodsStockList ...int) int {
