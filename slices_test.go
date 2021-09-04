@@ -119,3 +119,21 @@ func TestSliceCapAndLen(t *testing.T) {
 	assert.Equal(t, 2, len(players[2:4]))
 	assert.Equal(t, 4, cap(players[2:4]))
 }
+
+func TestDefaultValueOfSlice(t *testing.T) {
+	var players []string
+	// nil 切片的长度和容量为 0 且没有底层数组
+	assert.Equal(t, 0, len(players))
+	assert.Equal(t, 0, cap(players))
+	assert.Equal(t, []string(nil), players)
+
+	var phoneNumbers []int
+	assert.Equal(t, 0, len(phoneNumbers))
+	assert.Equal(t, 0, cap(phoneNumbers))
+	assert.Equal(t, []int(nil), phoneNumbers)
+
+	var isStarting []bool
+	assert.Equal(t, 0, len(isStarting))
+	assert.Equal(t, 0, cap(isStarting))
+	assert.Equal(t, []bool(nil), isStarting)
+}
