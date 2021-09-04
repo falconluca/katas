@@ -9,7 +9,12 @@ func TestVariable(t *testing.T) {
 	assert := assert.New(t)
 
 	assert.Equal("https://www.baidu.com", GetConstString())
-	assert.Equal("", DefaultValueOfString())
+
+	playerName, playerNumber, isStarting := DefaultValues()
+	assert.Equal("", playerName)
+	assert.Equal(0, playerNumber)
+	assert.Equal(false, isStarting)
+
 	assert.Equal("Allen", ValueOfString())
 
 	name, _ := FormatPlayerName("Luca")

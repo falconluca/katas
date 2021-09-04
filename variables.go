@@ -5,14 +5,18 @@ import (
 	"fmt"
 )
 
+// Go的基本类型 https://tour.go-zh.org/basics/11
+
 func GetConstString() string {
 	const BaiduHomePageUrl = "https://www.baidu.com"
 	return BaiduHomePageUrl
 }
 
-func DefaultValueOfString() string {
+func DefaultValues() (string, int, bool) {
 	var player string
-	return player
+	var number int
+	var isStarting bool
+	return player, number, isStarting
 }
 
 func ValueOfString() string {
