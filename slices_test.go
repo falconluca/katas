@@ -87,6 +87,24 @@ func TestDifferenceBetweenArrayAndSlice(t *testing.T) {
 		{2, "重构"},
 	}
 	assert.Equal(t, "[]struct { id int; name string }", reflect.TypeOf(books).String())
+
+	// 切片的切片
+	board := [][]string{
+		[]string{"_", "_", "_"},
+		[]string{"_", "_", "_"},
+		[]string{"_", "_", "_"},
+	}
+	// 两个玩家轮流打上 X 和 O
+	board[0][0] = "X"
+	board[2][2] = "O"
+	board[1][2] = "X"
+	board[1][0] = "O"
+	board[0][2] = "X"
+	assert.Equal(t, "X", board[0][0])
+	assert.Equal(t, "O", board[2][2])
+	assert.Equal(t, "X", board[1][2])
+	assert.Equal(t, "O", board[1][0])
+	assert.Equal(t, "X", board[0][2])
 }
 
 func TestDefaultBehaviorOfSlices(t *testing.T) {
