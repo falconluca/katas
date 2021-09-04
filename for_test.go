@@ -10,4 +10,6 @@ func TestFor(t *testing.T) {
 	assert.Equal(t, expected, CommonFor())
 	assert.Equal(t, expected, WhileLikeFor())
 	assert.Equal(t, expected, InfiniteFor())
+	assert.Equal(t, expected, RangeFor())
+	assert.Equal(t, expected, RangeMapFor())
 }
