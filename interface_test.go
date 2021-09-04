@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"github.com/stretchr/testify/assert"
 	"testing"
 )
@@ -23,4 +24,12 @@ func TestInterface(t *testing.T) {
 	xPostResp := intf[1].post(req)
 	assert.Equal(t, "Xfl resp(get): https://www.baidu.com 成功", xGetResp)
 	assert.Equal(t, "Xfl resp(post): Bear token 成功", xPostResp)
+
+	hosts := map[string]IPAddr{
+		"loopback":  {127, 0, 0, 1},
+		"googleDNS": {8, 8, 8, 8},
+	}
+	assert.Equal(t, "127.0.0.1\n", fmt.Sprintln(hosts["loopback"]))
+	assert.Equal(t, "8.8.8.8", fmt.Sprint(hosts["googleDNS"]))
+
 }
