@@ -32,3 +32,20 @@ func BlockChannel() {
 	msg = <-channel // Writer在Sleep，这里在阻塞
 	fmt.Println("Reader: ", msg)
 }
+
+func worker(done chan bool) {
+	fmt.Println("Worker is working...")
+
+	time.Sleep(time.Second)
+
+	fmt.Println("Done!")
+	done <- true
+}
+
+func ChannelSync() {
+	done := make(chan bool, 1)
+	go worker(done)
+
+	// 利用channel阻塞的特性实现主进程等待的效果
+	<-done
+}

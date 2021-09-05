@@ -104,5 +104,6 @@ func Entry() {
 	//dispatchSellTickets()
 	//Cas()
 	//Channel()
-	BlockChannel()
+	//BlockChannel()
+	ChannelSync()
 }
