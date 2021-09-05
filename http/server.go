@@ -10,6 +10,7 @@ import (
 func Entry() {
 	// 路由
 	http.HandleFunc("/", AppHome)
+	http.HandleFunc("/menu", GetMenu)
 
 	addr := ":9090"
 	err := http.ListenAndServe(addr, nil)
@@ -45,4 +46,10 @@ func AppHome(w http.ResponseWriter, req *http.Request) {
 		log.Fatal("响应失败", err)
 		return
 	}
+}
+
+func GetMenu(w http.ResponseWriter, req *http.Request) {
+	result := "{ \"code\": 200, \"data\": [ { \"name\": \"Coffee\", \"price\": 20.50 }, { \"name\": \"Coke\", \"price\": 3.5 } ] }"
+	w.Header().Set("Content-Type", "application/json")
+	fmt.Fprintf(w, "%s", result)
 }
