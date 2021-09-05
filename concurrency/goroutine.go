@@ -98,13 +98,3 @@ func Cas() {
 	result := atomic.LoadUint32(&counter)
 	fmt.Println("counter:", result)
 }
-
-func Entry() {
-	//GetStarted()
-	//dispatchSellTickets()
-	//Cas()
-	//Channel()
-	//BlockChannel()
-	//ChannelSync()
-	ChannelDirections()
-}
