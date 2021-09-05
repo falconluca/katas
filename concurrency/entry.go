@@ -15,5 +15,6 @@ func Entry() {
 	//TestChannelBuffered()
 	//TestChannelNoBuffered()
 	//CloseChannel()
-	CloseChannelV2()
+	//CloseChannelV2()
+	RangeOverChannel()
 }

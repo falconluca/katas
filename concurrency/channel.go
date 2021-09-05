@@ -19,3 +19,15 @@ func Channel() {
 	fmt.Println(greeting)
 	fmt.Println(name)
 }
+
+func RangeOverChannel() {
+	queue := make(chan string, 2)
+	queue <- "one"
+	queue <- "two"
+	close(queue)
+
+	// close a non-empty channel but still have the remaining values be received.
+	for elem := range queue {
+		fmt.Println(elem)
+	}
+}
