@@ -103,5 +103,6 @@ func Entry() {
 	//GetStarted()
 	//dispatchSellTickets()
 	//Cas()
-	Channel()
+	//Channel()
+	BlockChannel()
 }
