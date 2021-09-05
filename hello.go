@@ -3,7 +3,7 @@ package main
 import "awesomeProject/pattern"
 
 func main() {
-	//dao.TestDb()
+	//mysql.TestDb()
 
 	//http.Entry()
 
