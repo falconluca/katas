@@ -10,5 +10,8 @@ func Entry() {
 	//ChannelDirections()
 
 	//Select()
-	Timeouts()
+	//Timeouts()
+	NonBlockingSelect()
+	//TestChannelBuffered()
+	//TestChannelNoBuffered()
 }

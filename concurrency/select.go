@@ -33,7 +33,14 @@ func Select() {
 	}
 }
 
+// 移除select外层for的方法1: 超时
 func Timeouts() {
+	// By default channels are unbuffered, meaning that they will only accept sends (chan <-)
+	// if there is a corresponding receive (<- chan) ready to receive the sent value.
+	//
+	// Buffered channels accept a limited number of values without a corresponding receiver for those values.
+	//
+	// Note that the channel is buffered, so the send in the goroutine is nonblocking.
 	c1 := make(chan string, 1)
 	// external call
 	go func() {
@@ -61,4 +68,67 @@ func Timeouts() {
 	case <-time.After(3 * time.Second):
 		fmt.Println("timeout 2")
 	}
+}
+
+// 移除select外层for的方法2: 无阻塞
+func NonBlockingSelect() {
+	//messages := make(chan string, 1) // bufferd, no-blocking
+	messages := make(chan string) // no buffered, blocking
+	signals := make(chan bool)
+
+	select {
+	case msg := <-messages:
+		fmt.Println("received message", msg)
+	default:
+		fmt.Println("no message received")
+	}
+
+	msg := "hi"
+	select {
+	// Here msg cannot be sent to the messages channel,
+	// because the channel has no buffer and there is no receiver.
+	case messages <- msg:
+		fmt.Println("sent message", msg)
+	default:
+		fmt.Println("no message sent")
+	}
+
+	select {
+	case msg := <-messages:
+		fmt.Println("received message", msg)
+	case sig := <-signals:
+		fmt.Println("received signal", sig)
+	default:
+		fmt.Println("no activity")
+	}
+}
+
+func TestChannelNoBuffered() {
+	messages := make(chan string)
+
+	go func() {
+		messages <- "Greetings!"
+		fmt.Println("'Greetings!' sent.") // never exec this, because the chann is not buffered.
+	}()
+
+	time.Sleep(2 * time.Second)
+
+	result := <-messages
+	fmt.Println(result)
+}
+
+func TestChannelBuffered() {
+	messages := make(chan string, 1)
+
+	go func() {
+		messages <- "Greetings!"
+		// Note that the channel is buffered, so the send in the goroutine is nonblocking.
+		// will be exec.
+		fmt.Println("'Greetings!' sent.")
+	}()
+
+	time.Sleep(2 * time.Second)
+
+	result := <-messages
+	fmt.Println(result)
 }
