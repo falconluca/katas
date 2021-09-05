@@ -11,7 +11,8 @@ func Entry() {
 
 	//Select()
 	//Timeouts()
-	NonBlockingSelect()
+	//NonBlockingSelect()
 	//TestChannelBuffered()
 	//TestChannelNoBuffered()
+	CloseChannel()
 }
