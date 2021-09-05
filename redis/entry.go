@@ -15,6 +15,7 @@ var (
 	Pool *redis.Pool
 )
 
+// https://golang.org/doc/effective_go#init
 func init() {
 	redisHost := ":6379"
 	Pool = newPool(redisHost)
