@@ -105,5 +105,6 @@ func Entry() {
 	//Cas()
 	//Channel()
 	//BlockChannel()
-	ChannelSync()
+	//ChannelSync()
+	ChannelDirections()
 }

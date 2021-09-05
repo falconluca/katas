@@ -49,3 +49,24 @@ func ChannelSync() {
 	// 利用channel阻塞的特性实现主进程等待的效果
 	<-done
 }
+
+func ping(pings chan<- string, msg string) {
+	pings <- msg
+	//<- pings // error!
+}
+
+func pong(pings <-chan string, pongs chan<- string) {
+	msg := <-pings
+	pongs <- msg
+}
+
+func ChannelDirections() {
+	pings := make(chan string, 1)
+	pongs := make(chan string, 1)
+
+	ping(pings, "Let's play Overwatch together!")
+	pong(pings, pongs)
+
+	result := <-pongs
+	fmt.Println(result)
+}
