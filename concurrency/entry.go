@@ -9,5 +9,6 @@ func Entry() {
 	//ChannelSync()
 	//ChannelDirections()
 
-	Select()
+	//Select()
+	Timeouts()
 }
