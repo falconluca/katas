@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"math/rand"
 	"runtime"
+	"sync"
 	"time"
 )
 
@@ -44,9 +45,11 @@ func GetStarted() {
 }
 
 var totalTickets int32 = 10
+var mutex sync.Mutex
 
 func SellTickets(i int) {
-	for {
+	for totalTickets > 0 {
+		mutex.Lock()
 		if totalTickets > 0 { // 如果有票就卖
 			time.Sleep(time.Duration(rand.Intn(5)) * time.Millisecond) // 休息一下
 
@@ -54,9 +57,8 @@ func SellTickets(i int) {
 			totalTickets--
 
 			fmt.Println("买票人id:", i, ", 买了一张票, 剩余票数:", totalTickets)
-		} else {
-			break
 		}
+		mutex.Unlock()
 	}
 }
 
