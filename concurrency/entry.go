@@ -14,5 +14,6 @@ func Entry() {
 	//NonBlockingSelect()
 	//TestChannelBuffered()
 	//TestChannelNoBuffered()
-	CloseChannel()
+	//CloseChannel()
+	CloseChannelV2()
 }
