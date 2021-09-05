@@ -102,5 +102,6 @@ func Cas() {
 func Entry() {
 	//GetStarted()
 	//dispatchSellTickets()
-	Cas()
+	//Cas()
+	Channel()
 }
