@@ -1,6 +1,6 @@
 package main
 
-import "awesomeProject/concurrency"
+import "awesomeProject/pattern"
 
 func main() {
 	//dao.TestDb()
@@ -9,5 +9,8 @@ func main() {
 
 	//redis.Entry()
 
-	concurrency.Entry()
+	//concurrency.Entry()
+
+	// GO 编程模式
+	pattern.Entry()
 }

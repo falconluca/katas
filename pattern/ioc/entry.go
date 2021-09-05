@@ -1,0 +1,5 @@
+package ioc
+
+func IocEntry() {
+
+}

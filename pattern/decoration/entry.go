@@ -1,0 +1,5 @@
+package decoration
+
+func DecorationEntry() {
+
+}

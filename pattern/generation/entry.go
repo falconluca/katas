@@ -1,0 +1,5 @@
+package generation
+
+func GenerationEntry() {
+
+}
