@@ -1,11 +1,9 @@
 package main
 
-import (
-	"awesomeProject/dao"
-)
-
 func main() {
-	dao.TestDb()
+	//dao.TestDb()
 
 	//http.Entry()
+
+	//redis.Entry()
 }
