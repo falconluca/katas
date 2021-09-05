@@ -5,6 +5,7 @@ import (
 	"math/rand"
 	"runtime"
 	"sync"
+	"sync/atomic"
 	"time"
 )
 
@@ -78,7 +79,28 @@ func dispatchSellTickets() {
 	fmt.Println("done")
 }
 
+func Cas() {
+	var counter uint32 = 0
+	for i := 0; i < 10; i++ {
+		// 开启10个goroutine
+		go func() {
+			for i := 0; i < 20; i++ {
+				time.Sleep(time.Millisecond)
+				// https://pkg.go.dev/sync/atomic
+				atomic.AddUint32(&counter, 1)
+			}
+		}()
+	}
+
+	// 休眠一秒钟等goroutine完成
+	time.Sleep(time.Second)
+
+	result := atomic.LoadUint32(&counter)
+	fmt.Println("counter:", result)
+}
+
 func Entry() {
 	//GetStarted()
-	dispatchSellTickets()
+	//dispatchSellTickets()
+	Cas()
 }
