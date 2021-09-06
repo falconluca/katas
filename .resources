@@ -1,0 +1,21 @@
+Get Started
+
+- Download and Install Go on Linux
+  https://golang.org/doc/install
+- Get Started with Go
+  https://golang.org/doc/tutorial/getting-starte
+- Tutorial: Create a Go Module
+  https://golang.org/doc/tutorial/create-module
+- A Tour of Go
+  https://tour.golang.org/welcome/1
+- Access RDBS and Build REST API
+  https://golang.org/doc/tutorial/
+- 陈皓的GO入门 语法
+  https://coolshell.cn/articles/8460.html
+- 特性
+  https://coolshell.cn/articles/8489.html
+
+GO编程模式
+
+1. GO编程模式：切片，接口，时间和性能
+  https://coolshell.cn/articles/21128.html
