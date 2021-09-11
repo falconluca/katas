@@ -1,14 +1,8 @@
 package pattern
 
-import (
-	"awesomeProject/pattern/ioc"
-)
-
 func Entry() {
 	//errors.ErrorsEntry()
-	//functional_options.FunctionalOptionsEntry()
-	ioc.IocEntry()
-	//map_reduce.MapReduceEntry()
+	//ioc.IocEntry()
 	//generation.GenerationEntry()
 	//decoration.DecorationEntry()
 	//pipeline.PipelineEntry()
