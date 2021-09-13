@@ -1,5 +1,0 @@
-package decoration
-
-func DecorationEntry() {
-
-}
