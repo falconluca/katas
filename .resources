@@ -19,3 +19,8 @@ GO编程模式
 
 1. GO编程模式：切片，接口，时间和性能
   https://coolshell.cn/articles/21128.html
+
+特性
+
+- Go不支持重载函数
+- IoC的主要思想
