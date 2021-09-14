@@ -68,6 +68,10 @@ func RunHttpServer() {
 	http.HandleFunc("/v2/hello", WithServerHeader(WithBasicAuth(home)))
 	http.HandleFunc("/v3/hello", WithServerHeader(WithBasicAuth(WithDebugLog(home))))
 
+	http.HandleFunc("/v4/hello", Handler(home,
+		// pipeline 被增强的行为
+		WithServerHeader, WithBasicAuth, WithDebugLog))
+
 	err := http.ListenAndServe(":8080", nil)
 	if err != nil {
 		log.Fatal("ListenAndServe: ", err)
