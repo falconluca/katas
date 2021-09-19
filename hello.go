@@ -1,6 +1,6 @@
 package main
 
-import "awesomeProject/pattern"
+import "github.com/lucsiu/katas/gin"
 
 func main() {
 	//mysql.TestDb()
@@ -12,5 +12,8 @@ func main() {
 	//concurrency.Entry()
 
 	// GO 编程模式
-	pattern.Entry()
+	//pattern.Entry()
+
+	//gin.MiddlewareEntry()
+	gin.ProductEntry()
 }

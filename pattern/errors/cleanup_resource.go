@@ -14,7 +14,7 @@ func Close(c io.Closer) {
 }
 
 func CleanupResource() {
-	file := "/Users/luca/go/src/awesomeProject/hello.go"
+	file := "/Users/luca/go/src/katas/hello.go"
 	f, err := os.Open(file)
 	if err != nil {
 		log.Fatalf("error opening '%s', err: %v\n", file, err)
@@ -22,7 +22,7 @@ func CleanupResource() {
 	// 使用 defer 关键词进行清理
 	defer Close(f)
 
-	file = "/Users/luca/go/src/awesomeProject/if.go"
+	file = "/Users/luca/go/src/katas/if.go"
 	f, err = os.Open(file)
 	if err != nil {
 		log.Fatalf("error opening '%s', err: %v\n", file, err)

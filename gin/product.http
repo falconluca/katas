@@ -1,0 +1,28 @@
+### 创建产品
+
+# curl -XPOST -H"Content-Type: application/json" -d'{"username":"colin","name":"iphone12","category":"phone","price":8000,"description":"cannot afford"}' http://127.0.0.1:8080/v1/products
+POST http://127.0.0.1:8080/v1/products
+Content-Type: application/json
+
+{
+  "username": "colin",
+  "name": "iphone12",
+  "category": "phone",
+  "price": 8000,
+  "description": "cannot afford"
+}
+
+### 获取产品信息
+
+# curl -XGET http://127.0.0.1:8080/v1/products/iphone12
+GET http://127.0.0.1:8080/v1/products/iphone12
+
+###
+
+### 获取不存在的产品
+
+# curl -XGET http://127.0.0.1:8080/v1/products/iphone13
+GET http://127.0.0.1:8080/v1/products/iphone13
+
+###
+
