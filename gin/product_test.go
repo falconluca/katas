@@ -20,6 +20,7 @@ func TestGetMapReturnValues(t *testing.T) {
 }
 
 func TestGetCurrentPath(t *testing.T) {
+	// https://stackoverflow.com/questions/18537257/how-to-get-the-directory-of-the-currently-running-file
 	dir, _ := os.Getwd()
 	fmt.Println(dir) // /Users/luca/dev-resources/katas/gin
 }
