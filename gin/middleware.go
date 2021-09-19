@@ -56,5 +56,7 @@ func MiddlewareEntry() {
 		log.Println(name)
 	})
 
+	// 可以使用Gin中间件实现认证、requestId、跨域
+
 	r.Run(":8080")
 }

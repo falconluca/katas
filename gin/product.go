@@ -8,6 +8,7 @@ import (
 	"sync"
 	"time"
 
+	"github.com/fvbock/endless"
 	"github.com/gin-gonic/gin"
 	"golang.org/x/sync/errgroup"
 )
@@ -98,22 +99,11 @@ func router() http.Handler {
 
 func ProductEntry() {
 	// 一进程多服务
-	insecureServer := &http.Server{
-		Addr:         ":8080",
-		Handler:      router(),
-		ReadTimeout:  5 * time.Second,
-		WriteTimeout: 10 * time.Second,
-	}
-	secureServer := &http.Server{
-		Addr:         ":8443",
-		Handler:      router(),
-		ReadTimeout:  5 * time.Second,
-		WriteTimeout: 10 * time.Second,
-	}
-
 	var eg errgroup.Group
 	eg.Go(func() error {
-		err := insecureServer.ListenAndServe()
+		// 当 HTTP 服务的访问量大时, 重启服务的时可能还有很多连接没有断开, 请求没有完成
+		// 优雅关停使 HTTP 服务可以在处理完所有请求后, 正常地关闭这些连接
+		err := endless.ListenAndServe(":8080", router())
 		if err != nil && err != http.ErrServerClosed {
 			log.Fatal(err)
 		}
@@ -123,7 +113,7 @@ func ProductEntry() {
 		dir, _ := os.Getwd()
 		certFile := fmt.Sprintf("%s/gin/ssl/server.pem", dir)
 		keyFile := fmt.Sprintf("%s/gin/ssl/server.key", dir)
-		err := secureServer.ListenAndServeTLS(certFile, keyFile)
+		err := endless.ListenAndServeTLS(":8443", certFile, keyFile, router())
 		if err != nil && err != http.ErrServerClosed {
 			log.Fatal(err)
 		}
