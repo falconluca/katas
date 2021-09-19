@@ -1,6 +1,6 @@
 package main
 
-import "github.com/lucsiu/katas/gin"
+import "github.com/shaohsiung/katas/gin"
 
 func main() {
 	//mysql.TestDb()
