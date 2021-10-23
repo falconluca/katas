@@ -24,3 +24,9 @@ GO编程模式
 
 - Go不支持重载函数
 - IoC的主要思想
+
+我常用的Go第三方库
+
+- 输出高亮字符串 https://github.com/fatih/color
+- Web框架 https://github.com/gin-gonic/gin
+- ORM框架 https://gorm.io/
