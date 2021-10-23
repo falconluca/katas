@@ -1,4 +1,4 @@
-package main
+package grammar
 
 func SayHey(name string) string {
 	return "Hey " + name
