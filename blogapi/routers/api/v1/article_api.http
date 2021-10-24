@@ -1,0 +1,26 @@
+### 创建文章
+
+# curl -X POST "http://127.0.0.1:8000/api/v1/articles?tag_id=1&title=test1&desc=test-desc&content=test-content&created_by=test-created&state=1"
+POST http://127.0.0.1:8000/api/v1/articles?tag_id=1&title=一片文章&desc=一片文章desc&content=一片文章content&created_by=luca&state=1
+
+### 获取文章列表
+
+# curl http://127.0.0.1:8000/api/v1/articles
+GET http://127.0.0.1:8000/api/v1/articles?state=1&tag_id=1
+
+### 获取文章
+
+# curl http://127.0.0.1:8000/api/v1/articles/1
+GET http://127.0.0.1:8000/api/v1/articles/1
+
+### 删除文章
+
+# curl -X DELETE http://127.0.0.1:8000/api/v1/articles/1
+DELETE http://127.0.0.1:8000/api/v1/articles/1
+
+### 修改文章
+
+# curl -X PUT http://127.0.0.1:8000/api/v1/articles/1?tag_id=1&title=test-edit1&desc=test-desc-edit&content=test-content-edit&modified_by=test-created-edit&state=0
+PUT http://127.0.0.1:8000/api/v1/articles/2?tag_id=1&title=test-edit1&desc=test-desc-edit&content=test-content-edit&modified_by=test-created-edit&state=0
+
+###

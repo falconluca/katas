@@ -44,11 +44,13 @@ func GetArticles(c *gin.Context) {
 	var state = -1
 	stateArg := c.Query("state")
 	if stateArg != "" {
+		state = com.StrTo(stateArg).MustInt()
 		v.Range(state, 0, 1, "state").Message("状态只允许0或1")
 	}
 	var tagId = -1
 	tagIdArg := c.Query("tag_id")
 	if tagIdArg != "" {
+		tagId = com.StrTo(tagIdArg).MustInt()
 		v.Min(tagId, 1, "tag_id").Message("标签id必须大于0")
 	}
 
@@ -63,8 +65,8 @@ func GetArticles(c *gin.Context) {
 		code = e.SUCCESS
 
 		maps := make(map[string]interface{})
-		maps["state"] = com.StrTo(stateArg).MustInt()
-		maps["tag_id"] = com.StrTo(tagIdArg).MustInt()
+		maps["state"] = state
+		maps["tag_id"] = tagId
 
 		data["list"] = models.GetArticles(util.GetPage(c), setting.PageSize, maps)
 		data["total"] = models.GetArticleTotal(maps)

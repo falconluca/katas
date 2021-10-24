@@ -44,7 +44,7 @@ func GetArticles(page int, size int, maps interface{}) (articles []Article) {
 				Where(maps).
 				Offset(page).
 				Limit(size).
-				First(&articles)
+				Find(&articles)
 	return
 }
 
