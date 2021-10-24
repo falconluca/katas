@@ -3,10 +3,10 @@ package api
 import (
 	"blogapi/models"
 	"blogapi/pkg/e"
+	"blogapi/pkg/logging"
 	"blogapi/pkg/util"
 	"github.com/astaxie/beego/validation"
 	"github.com/gin-gonic/gin"
-	"log"
 	"net/http"
 )
 
@@ -24,7 +24,7 @@ func GetAuth(c *gin.Context) {
 	auth := &auth{Username: username, Password: password}
 	if ok, _ := v.Valid(auth); !ok {
 		for _, err := range v.Errors {
-			log.Println(err.Key, err.Message)
+			logging.Info(err.Key, err.Message)
 		}
 		c.JSON(http.StatusOK, gin.H{
 			"code": e.INVALID_PARAMS,
@@ -47,7 +47,7 @@ func GetAuth(c *gin.Context) {
 
 	token, err := util.GenerateToken(username, password)
 	if err != nil {
-		log.Println(err)
+		logging.Info(err)
 		c.JSON(http.StatusOK, gin.H{
 			"code": e.ERROR_AUTH_TOKEN,
 			"msg":  e.GetMsg(e.ERROR_AUTH_TOKEN),

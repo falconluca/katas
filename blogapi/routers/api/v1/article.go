@@ -3,12 +3,12 @@ package v1
 import (
 	"blogapi/models"
 	"blogapi/pkg/e"
+	"blogapi/pkg/logging"
 	"blogapi/pkg/setting"
 	"blogapi/pkg/util"
 	"github.com/astaxie/beego/validation"
 	"github.com/gin-gonic/gin"
 	"github.com/unknwon/com"
-	"log"
 	"net/http"
 )
 
@@ -202,6 +202,6 @@ func DeleteArticle(c *gin.Context) {
 
 func logValidError(errors []*validation.Error) {
 	for _, err := range errors {
-		log.Printf("err.key: %s, err.msg: %s", err.Key, err.Message)
+		logging.Info("err.key: %s, err.msg: %s", err.Key, err.Message)
 	}
 }
