@@ -6,7 +6,7 @@ POST http://127.0.0.1:8000/api/v1/articles?tag_id=1&title=一片文章&desc=一�
 ### 获取文章列表
 
 # curl http://127.0.0.1:8000/api/v1/articles
-GET http://127.0.0.1:8000/api/v1/articles?state=1&tag_id=1
+GET http://127.0.0.1:8000/api/v1/articles?state=1&tag_id=1&token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3QiLCJwYXNzd29yZCI6InRlc3QxMjM0NTYiLCJleHAiOjE2MzUwNzI0MjQsImlzcyI6ImJsb2dhcGkifQ.ch0RfPx5d9MPHioW1O025d0gsB1TVdWtKm0C-MJs4Gc
 
 ### 获取文章
 
