@@ -1,0 +1,7 @@
+###
+
+# curl http://127.0.0.1:8000/auth?username=test&password=test123456
+GET http://127.0.0.1:8000/auth?username=test&password=test123456
+
+###
+
