@@ -1,0 +1,22 @@
+### 获取标签列表
+
+# curl http://localhost:8000/api/v1/tags
+GET http://localhost:8000/api/v1/tags
+
+### 创建标签
+
+# curl -X POST "http://localhost:8000/api/v1/tags?name=Kubernetes&state=1&created_by=Luca"
+POST http://localhost:8000/api/v1/tags?name=Kubernetes&state=1&created_by=Luca
+
+### 修改标签
+
+# curl -X PUT "localhost:8000/api/v1/tags/2?name=k8s&name=Lucas&state=0&modified_by=lucas"
+PUT localhost:8000/api/v1/tags/2?name=k8s&name=Lucas&state=0&modified_by=lucas
+
+### 删除标签
+
+# curl -X DELETE "localhost:8000/api/v1/tags/2"
+DELETE localhost:8000/api/v1/tags/2
+
+###
+

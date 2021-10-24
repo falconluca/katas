@@ -12,7 +12,6 @@ import (
 	"github.com/astaxie/beego/validation"
 )
 
-// curl http://localhost:8000/api/v1/tags
 func GetTags(c *gin.Context) {
 	// 组装数据访问参数
 	maps := make(map[string]interface{})
@@ -41,7 +40,6 @@ func GetTags(c *gin.Context) {
 	})
 }
 
-// curl -X POST "http://localhost:8000/api/v1/tags?name=Kubernetes&state=1&created_by=Luca"
 func AddTag(c *gin.Context) {
 	name := c.Query("name") // req.getParameter("name");
 	state := com.StrTo(c.DefaultQuery("state", "0")).MustInt()
@@ -70,7 +68,6 @@ func AddTag(c *gin.Context) {
 	})
 }
 
-// curl -X PUT "localhost:8000/api/v1/tags/2?name=k8s&name=Lucas&state=0&modified_by=lucas"
 func EditTag(c *gin.Context) {
 	id := com.StrTo(c.Param("id")).MustInt()
 	name := c.Query("name")
