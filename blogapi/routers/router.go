@@ -1,6 +1,8 @@
 package routers
 
 import (
+	_ "blogapi/docs"
+
 	"blogapi/middleware/jwt"
 	"blogapi/pkg/setting"
 	"blogapi/routers/api"
