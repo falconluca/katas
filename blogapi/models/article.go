@@ -1,12 +1,7 @@
 package models
 
-import (
-	"github.com/jinzhu/gorm"
-	"time"
-)
-
 type Article struct {
-	Model
+	Model // 类似继承
 
 	TagId      int    `json:"tag_id" gorm:"index"` // 声明这是个索引字段. 使用自动迁移功能则会有所影响，不使用则无影响
 	Tag        Tag    `json:"tag"`                 // TODO 嵌套struct 关联查询
@@ -18,6 +13,7 @@ type Article struct {
 	State      int    `json:"state"`
 }
 
+/*
 func (a *Article) BeforeCreate(s *gorm.Scope) error {
 	s.SetColumn("created_on", time.Now().Unix()) // 当前时间戳
 	return nil
@@ -27,6 +23,7 @@ func (a *Article) BeforeUpdate(s *gorm.Scope) error {
 	s.SetColumn("modified_on", time.Now().Unix())
 	return nil
 }
+*/
 
 func ExistArticleById(id int) bool {
 	var article Article
@@ -62,6 +59,7 @@ func EditArticle(id int, data map[string]interface{}) bool {
 func AddArticle(data map[string]interface{}) bool {
 	db.Create(&Article{
 		// TODO 使用interface做类型转换 类型断言
+		// 是否可以把interface{}理解成Java里的Object对象
 		TagId:     data["tag_id"].(int),
 		Title:     data["title"].(string),
 		Desc:      data["desc"].(string),

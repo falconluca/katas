@@ -1,10 +1,5 @@
 package models
 
-import (
-	"github.com/jinzhu/gorm"
-	"time"
-)
-
 type Tag struct {
 	Model
 
@@ -14,18 +9,20 @@ type Tag struct {
 	State      int    `json:"state"`
 }
 
+/*
 // BeforeCreate gorm创建数据的回调方法
 func (tag *Tag) BeforeCreate(scope *gorm.Scope) error {
-	// TODO CreatedOn 或 created_on 都行
-	scope.SetColumn("created_on", time.Now().Unix())
+	// tag.CreatedOn, CreatedOn 或 created_on 都行, 参看注释
+	scope.SetColumn(tag.CreatedOn, time.Now().Unix())
 	return nil
 }
 
 // BeforeUpdate gorm更新数据的回调方法
 func (tag *Tag) BeforeUpdate(scope *gorm.Scope) error {
-	scope.SetColumn("modified_on", time.Now().Unix())
+	scope.SetColumn(tag.ModifiedOn, time.Now().Unix())
 	return nil
 }
+*/
 
 func GetTags(page int, size int, maps interface{}) (tags []Tag) {
 	// TODO 因为在同一个models包下, 因此db *gorm.DB是可以直接使用的

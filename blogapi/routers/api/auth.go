@@ -29,7 +29,7 @@ func GetAuth(c *gin.Context) {
 		c.JSON(http.StatusOK, gin.H{
 			"code": e.INVALID_PARAMS,
 			"msg":  e.GetMsg(e.INVALID_PARAMS),
-			"data": make(map[string]interface{}),
+			"data": map[string]interface{}{},
 		})
 		return
 	}
@@ -40,7 +40,7 @@ func GetAuth(c *gin.Context) {
 		c.JSON(http.StatusOK, gin.H{
 			"code": e.ERROR_AUTH,
 			"msg":  e.GetMsg(e.ERROR_AUTH),
-			"data": make(map[string]interface{}),
+			"data": map[string]interface{}{},
 		})
 		return
 	}
