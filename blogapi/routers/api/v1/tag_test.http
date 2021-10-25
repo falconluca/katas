@@ -16,7 +16,7 @@ PUT localhost:8000/api/v1/tags/2?name=k8s&name=Lucas&state=0&modified_by=lucas
 ### 删除标签
 
 # curl -X DELETE "localhost:8000/api/v1/tags/2"
-DELETE localhost:8000/api/v1/tags/2
+DELETE localhost:8000/api/v1/tags/3?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3QiLCJwYXNzd29yZCI6InRlc3QxMjM0NTYiLCJleHAiOjE2MzUxNTM4ODcsImlzcyI6ImJsb2dhcGkifQ.WZGshRPLrlFuXITvU1Qj8oXNcS-HlKtX_A6rms3Vo68
 
 ###
 

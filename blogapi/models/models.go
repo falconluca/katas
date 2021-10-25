@@ -17,6 +17,7 @@ type Model struct {
 	Id         int `gorm:"primary_key" json:"id"`
 	CreatedOn  int `json:"created_on"`
 	ModifiedOn int `json:"modified_on"`
+	DeletedOn  int `json:"deleted_on"`
 }
 
 // init 初始化数据库连接
@@ -59,8 +60,9 @@ func init() {
 	db.LogMode(true)
 
 	// 注册gorm全局钩子
-	db.Callback().Create().Replace("gorm:update_time_stamp", updateTimestampForCreateCallback)
+	db.Callback().Create().Replace("gorm:update_time_stamp", updateTimestampForCreateCallback) // TODO callbackName有啥用?
 	db.Callback().Update().Replace("gorm:update_time_stamp", updateTimestampForUpdateCallback)
+	db.Callback().Delete().Replace("gorm:delete", deleteCallback)
 
 	// 配置数据源
 	pool := db.DB()
@@ -86,6 +88,46 @@ func updateTimestampForUpdateCallback(s *gorm.Scope) {
 	if _, ok := s.Get("gorm:update_column"); ok {
 		s.SetColumn("ModifiedOn", time.Now().Unix())
 	}
+}
+
+func deleteCallback(s *gorm.Scope) {
+	if s.HasError() {
+		return
+	}
+
+	var opt string
+	if str, ok := s.Get("gorm:delete_option"); ok {
+		opt = fmt.Sprint(str) // 这是类型转换吗? 我可以这样处理吗 --> opt = str.(string)
+	}
+
+	var sql string
+	deletedOn, ok := s.FieldByName("DeletedOn")
+	if ok && !s.Search.Unscoped {
+		// 存在deletedOn字段并且不是Unscoped时, 执行软删除
+		sql = fmt.Sprintf("update %v set %v=%v%v%v",
+			s.QuotedTableName(),
+			s.Quote(deletedOn.DBName),
+			s.AddToVars(time.Now().Unix()), // 防止SQL注入
+			addSpace2Str(s.CombinedConditionSql()),
+			addSpace2Str(opt),
+		)
+	} else {
+		// 硬删除
+		sql = fmt.Sprintf("delete from %v%v%v",
+			s.QuotedTableName(),
+			addSpace2Str(s.CombinedConditionSql()),
+			addSpace2Str(opt),
+		)
+	}
+	s.Raw(sql).Exec()
+}
+
+func addSpace2Str(str string) interface{} {
+	if str == "" {
+		return ""
+	}
+
+	return " " + str
 }
 
 // CloseDb 关闭数据库连接
