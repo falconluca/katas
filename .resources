@@ -30,3 +30,4 @@ GO编程模式
 - 输出高亮字符串 https://github.com/fatih/color
 - Web框架 https://github.com/gin-gonic/gin
 - ORM框架 https://gorm.io/
+- corn定时任务 https://github.com/robfig/cron

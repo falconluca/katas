@@ -90,7 +90,7 @@ func updateTimestampForUpdateCallback(s *gorm.Scope) {
 	}
 }
 
-func deleteCallback(s *gorm.Scope) {
+func deleteCallback(s *gorm.Scope) { // TODO debug 看看s里面的内容
 	if s.HasError() {
 		return
 	}
@@ -103,7 +103,7 @@ func deleteCallback(s *gorm.Scope) {
 	var sql string
 	deletedOn, ok := s.FieldByName("DeletedOn")
 	if ok && !s.Search.Unscoped {
-		// 存在deletedOn字段并且不是Unscoped时, 执行软删除
+		// 存在deletedOn字段并且不是Unscoped时, 执行软删除 Soft Delete
 		sql = fmt.Sprintf("update %v set %v=%v%v%v",
 			s.QuotedTableName(),
 			s.Quote(deletedOn.DBName),
