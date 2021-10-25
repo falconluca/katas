@@ -1,6 +1,7 @@
 package routers
 
 import (
+	// 这个要引入, 否则无法正常访问swagger文档
 	_ "blogapi/docs"
 
 	"blogapi/middleware/jwt"
