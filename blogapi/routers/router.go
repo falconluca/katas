@@ -20,7 +20,7 @@ func InitRouter() *gin.Engine {
 	r.Use(gin.Logger())
 	r.Use(gin.Recovery())
 
-	gin.SetMode(setting.RunMode)
+	gin.SetMode(setting.ServerSettings.RunMode)
 
 	r.GET("/auth", api.GetAuth)
 	// http://localhost:8000/swagger/index.html

@@ -11,3 +11,5 @@ func TestInit3(t *testing.T) {
 	fmt.Println("exec TestInit2")
 	p1.Run()
 }
+
+// TODO 多个init方法的执行顺序

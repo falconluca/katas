@@ -20,8 +20,8 @@ type Model struct {
 	DeletedOn  int `json:"deleted_on"`
 }
 
-// init 初始化数据库连接
-func init() {
+// Setup 初始化数据库连接
+func Setup() {
 	var (
 		err         error
 		dbType      string
@@ -32,17 +32,12 @@ func init() {
 		tablePrefix string
 	)
 
-	sec, err := setting.Cfg.GetSection("database")
-	if err != nil {
-		log.Fatalf("加载区失败 err: %v", err)
-	}
-
-	dbType = sec.Key("TYPE").String()
-	dbName = sec.Key("NAME").String()
-	user = sec.Key("USER").String()
-	password = sec.Key("PASSWORD").String()
-	host = sec.Key("HOST").String()
-	tablePrefix = sec.Key("TABLE_PREFIX").String()
+	dbType = setting.DatabaseSettings.Type
+	dbName = setting.DatabaseSettings.DbName
+	user = setting.DatabaseSettings.User
+	password = setting.DatabaseSettings.Password
+	host = setting.DatabaseSettings.Host
+	tablePrefix = setting.DatabaseSettings.TablePrefix
 
 	db, err = gorm.Open(dbType, fmt.Sprintf("%s:%s@tcp(%s)/%s?charset=utf8&parseTime=True&loc=Local",
 		user,

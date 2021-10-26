@@ -29,7 +29,7 @@ func GetTags(c *gin.Context) {
 	// 调用数据访问
 	code := e.SUCCESS
 	data := make(map[string]interface{})
-	data["list"] = models.GetTags(util.GetPage(c), setting.PageSize, maps)
+	data["list"] = models.GetTags(util.GetPage(c), setting.AppSettings.PageSize, maps)
 	data["total"] = models.GetTagTotal(maps)
 
 	// 响应请求

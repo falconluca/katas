@@ -1,6 +1,8 @@
 package main
 
 import (
+	"blogapi/models"
+	"blogapi/pkg/logging"
 	"blogapi/pkg/setting"
 	"blogapi/routers"
 	"fmt"
@@ -8,19 +10,17 @@ import (
 )
 
 func main() {
-	//r := gin.Default()
-	//r.GET("/healthz", func(c *gin.Context) {
-	//	c.JSON(http.StatusOK, gin.H{
-	//		"msg": "success",
-	//	})
-	//})
+	setting.Setup()
+	models.Setup()
+	logging.Setup()
+
 	r := routers.InitRouter()
 
 	s := &http.Server{
-		Addr:           fmt.Sprintf(":%d", setting.HttpPort),
+		Addr:           fmt.Sprintf(":%d", setting.ServerSettings.HttpPort),
 		Handler:        r,
-		ReadTimeout:    setting.ReadTimeout,
-		WriteTimeout:   setting.WriteTimeout,
+		ReadTimeout:    setting.ServerSettings.ReadTimeout,
+		WriteTimeout:   setting.ServerSettings.WriteTimeout,
 		MaxHeaderBytes: 1 << 20,
 	}
 	if err := s.ListenAndServe(); err != nil {
