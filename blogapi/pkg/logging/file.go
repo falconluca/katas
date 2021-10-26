@@ -9,7 +9,7 @@ import (
 )
 
 func getLogFilePath() string {
-	return fmt.Sprintf("%s", setting.AppSettings.LogSavePath)
+	return fmt.Sprintf("%s%s", setting.AppSettings.RuntimeRootPath, setting.AppSettings.LogSavePath)
 }
 
 func getLogFileFullPath() string {
