@@ -1,0 +1,43 @@
+// 笔记:
+// proto格式: message, field (name, type)
+// proto数据类型: bool, int32, float, double, string, other message type
+// proto消息的unique number "=1" "=2" 唯一号码范围1-15和16以上的有啥区别?
+// proto消息字段的默认值 string("") bool(false) int32/float/double(0)
+// repeated就像是数组类型
+// 执行命令生成go代码: protoc --go_out=. *.proto
+
+syntax = "proto3";
+// package declaration
+package luca;
+
+import "google/protobuf/timestamp.proto";
+
+//option go_package = "protobuf/examples/go/lucapb"; // go代码会生成在: $(pwd)/protobuf/examples/go/lucapb/addressbook.pb.go
+option go_package = "./lucapb"; // go代码会生成在: $(pwd)/lucapb/addressbook.pb.go
+
+message Person {
+  string name = 1;
+  int32 id = 2;
+
+  enum PhoneType {
+    MOBILE = 0;
+    HOME = 1;
+    WORK = 2;
+  }
+
+  message PhoneNumber {
+    string number = 1;
+    PhoneType type = 2;
+  }
+
+  // 数组?
+  repeated PhoneNumber phones = 3;
+
+  // 非频繁字段
+  string email = 16;
+  google.protobuf.Timestamp last_updated = 17;
+}
+
+message AddressBook {
+  repeated Person people = 1;
+}
