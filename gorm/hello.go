@@ -59,8 +59,8 @@ func main() {
 
 	logGreenStr("分页获取房源")
 	housePage := getHousePage(0, 2)
-	for i, h := range housePage {
-		log.Printf("第%v套房源: %+v\n", i+1, *h)
+	for i, h := range *housePage {
+		log.Printf("第%v套房源: %+v\n", i+1, h)
 	}
 
 	// 原生SQL
@@ -74,8 +74,8 @@ func main() {
 	// TODO gorm钩子
 }
 
-func getHousePage(page int, size int) []*House { // 返回一个装满地址的数组...
-	houses := make([]*House, 0)
+func getHousePage(page int, size int) *[]House {
+	houses := make([]House, 0)
 	// var houses []*House = make([]*House, 0)
 	err := db.Where("house_id is not null").
 		Offset(page).
@@ -86,7 +86,7 @@ func getHousePage(page int, size int) []*House { // 返回一个装满地址的�
 	if err != nil {
 		log.Fatalf("获取房源分页数据失败! err: %v", err)
 	}
-	return houses
+	return &houses
 }
 
 func updateHouse(house *House) {
