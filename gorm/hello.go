@@ -77,20 +77,22 @@ func main() {
 func getHousePage(page int, size int) *[]House {
 	houses := make([]House, 0)
 	// var houses []*House = make([]*House, 0)
-	err := db.Where("house_id is not null").
+	if err := db.
+		Where("house_id is not null").
 		Offset(page).
 		Limit(size).
 		Order("house_id desc").
 		Find(&houses).
-		Error
-	if err != nil {
+		Error; err != nil {
 		log.Fatalf("获取房源分页数据失败! err: %v", err)
 	}
 	return &houses
 }
 
 func updateHouse(house *House) {
-	if err := db.Save(house).Error; err != nil {
+	if err := db.
+		Save(house).
+		Error; err != nil {
 		log.Fatalf("更新房源失败! err: %v", err)
 	}
 }
@@ -98,11 +100,11 @@ func updateHouse(house *House) {
 func deleteHouseByHouseId(houseId uint) {
 	houseIdStr := strconv.Itoa(int(houseId))
 	// TODO 这个SQL好残疾 :) 只能这样写么?
-	err := db.Where("house_id = ?", houseIdStr).
+	if err := db.
+		Where("house_id = ?", houseIdStr).
 		//Unscoped(). // 永久删除
 		Delete(&House{}).
-		Error
-	if err != nil {
+		Error; err != nil {
 		log.Fatalf("删除房源失败! err: %v", err)
 	}
 }
@@ -148,7 +150,10 @@ func getHouseByHouseId(houseId uint) *House {
 	// 这是啥的地址呀??? 没整明白 TODO
 
 	houseIdStr := strconv.Itoa(int(houseId))
-	if err := db.Where("house_id = ?", houseIdStr).First(&house).Error; err != nil {
+	if err := db.
+		Where("house_id = ?", houseIdStr).
+		First(&house).
+		Error; err != nil {
 		log.Fatalf("get house error: %v", err)
 	}
 	return &house
@@ -160,7 +165,8 @@ func getHousesBySection(section string) *[]House { // 返回数组的地址...
 		//Select("house_id"). // 默认情况下, GORM 在查询时会选择所有的字段, 可以使用 Select 来指定您想要的字段
 		// 或者使用智能选择字段有点像Mybatis的resultType
 		Where("section = ?", section).
-		Find(&houses).Error; // 查看finisher_api.go
+		Find(&houses).
+		Error; // 查看finisher_api.go
 	err != nil {
 		log.Fatalf("get house error: %v", err)
 	}
@@ -169,7 +175,9 @@ func getHousesBySection(section string) *[]House { // 返回数组的地址...
 
 func findAllHouses() *[]House {
 	var houses []House
-	if err := db.Find(&houses).Error; err != nil {
+	if err := db.
+		Find(&houses).
+		Error; err != nil {
 		log.Fatalf("find all houses error: %v", err)
 	}
 	return &houses
