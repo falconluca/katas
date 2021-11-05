@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"gorm.io/gorm/logger"
 	"log"
 	"strconv"
 	"time"
@@ -34,35 +35,44 @@ func main() {
 		log.Printf("第%v套房源: %+v\n", i+1, house)
 	}
 
-	logGreenStr("创建房源")
-	newHouse := &House{HouseId: 7, Section: "万科"}
-	addNewHouse(newHouse)
-	log.Printf("新创建的房源: %+v\n", newHouse)
+	/*
+		logGreenStr("创建房源")
+		newHouse := &House{HouseId: 7, Section: "万科"}
+		addNewHouse(newHouse)
+		log.Printf("新创建的房源: %+v\n", newHouse)
 
-	logGreenStr("删除房源(软删除: 因为有deletedAt字段)")
-	deleteHouseByHouseId(7)
+		logGreenStr("删除房源(软删除: 因为有deletedAt字段)")
+		deleteHouseByHouseId(7)
 
-	logGreenStr("获取所有房源列表")
-	allHouses := findAllHouses()
-	for i, house := range *allHouses {
-		log.Printf("第%v套房源: %+v\n", i+1, house)
-	}
+		logGreenStr("获取所有房源列表")
+		allHouses := findAllHouses()
+		for i, house := range *allHouses {
+			log.Printf("第%v套房源: %+v\n", i+1, house)
+		}
 
-	logGreenStr("查询房源")
-	house := getHouseByHouseId(12)
-	log.Printf("查询房源: %+v\n", house)
+		logGreenStr("查询房源")
+		house := getHouseByHouseId(12)
+		log.Printf("查询房源: %+v\n", house)
 
-	logGreenStr("更新房源")
-	house.Section = "万科"
-	updateHouse(house)
+		logGreenStr("更新房源")
+		house.Section = "万科"
+		updateHouse(house)
 
-	logGreenStr("分页获取房源")
-	housePage := getHousePage(0, 2)
-	for i, h := range housePage {
-		log.Printf("第%v套房源: %+v\n", i+1, *h)
-	}
+		logGreenStr("分页获取房源")
+		housePage := getHousePage(0, 2)
+		for i, h := range housePage {
+			log.Printf("第%v套房源: %+v\n", i+1, *h)
+		}
+	*/
 
-	// TODO 原生SQL
+	// 原生SQL
+	var h House
+	db.
+		Debug(). // 打印SQL
+		Raw("SELECT h1.section, h2.house_id, h2.updated_at FROM houses h1 "+
+			"left join houses h2 on h1.house_id = h2.house_id  WHERE h1.house_id = ?", 13).Scan(&h)
+	log.Printf("查询房源: %+v\n", h)
+
 	// TODO gorm钩子
 }
 
@@ -111,7 +121,9 @@ func logGreenStr(str string) {
 func initDb() *gorm.DB {
 	dsn := fmt.Sprintf(`%s:%s@tcp(%s)/%s?charset=utf8&parseTime=%t&loc=%s`,
 		"root", "root", "127.0.0.1:3306", "test", true, "Local")
-	db, err := gorm.Open(mysql.Open(dsn), &gorm.Config{})
+	db, err := gorm.Open(mysql.Open(dsn), &gorm.Config{
+		Logger: logger.Default.LogMode(logger.Info), // 默认是Warn, 即只打印慢查询
+	})
 	if err != nil {
 		panic("failed to connect db")
 	}
