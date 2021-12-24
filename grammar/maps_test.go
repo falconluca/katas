@@ -1,6 +1,7 @@
 package grammar
 
 import (
+	"fmt"
 	"github.com/stretchr/testify/assert"
 	"testing"
 )
@@ -88,4 +89,23 @@ func TestMaps(t *testing.T) {
 	// 若 key 不在映射中，那么 player 是该映射元素类型的零值
 	assert.Equal("", player.id)
 	assert.Equal(float32(0), player.data)
+}
+
+func TestMapKeySlices(t *testing.T) {
+	m := map[string][]string{
+		"all": {
+			"hello",
+			"luca",
+			"James",
+		},
+		"all2": {
+			"hello",
+			"luca",
+			"James",
+		},
+	}
+	strings := m["all"]
+	for _, str := range strings {
+		fmt.Println(str)
+	}
 }

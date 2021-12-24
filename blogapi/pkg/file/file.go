@@ -24,10 +24,14 @@ func CheckNotExist(path string) bool {
 	return os.IsNotExist(err)
 }
 
-// CheckPermission 文件权限
+// CheckPermission 文件权限 FIXME Deprecated
 func CheckPermission(path string) bool {
 	_, err := os.Stat(path)
 	return os.IsPermission(err)
+}
+
+func HasPermission(path string) bool {
+	return !CheckPermission(path)
 }
 
 // IsNotExistMkdir 不存在则创建文件夹

@@ -26,7 +26,7 @@ func main() {
 	b := &pb.AddressBook{People: []*pb.Person{
 		&p,
 	}}
-	out, err := proto.Marshal(b)
+	out, err := proto.Marshal(b) // 把指针传递给interface? 指针和interface是什么关系啊?
 	if err != nil {
 		log.Fatalln("序列化AddressBook失败, err: ", err)
 	}
